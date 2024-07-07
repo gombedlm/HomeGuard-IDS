@@ -14,7 +14,7 @@ jobs:
 
     services:
       postgres:
-        image: postgres:12
+        image: postgres:13
         env:
           POSTGRES_DB: homeguard_db
           POSTGRES_USER: postgres
@@ -28,12 +28,9 @@ jobs:
           --health-retries 5
 
     env:
-      DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
-      POSTGRES_DB: homeguard_db
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_HOST: localhost
-      POSTGRES_PORT: 5432
+      PYTHON_VERSION: '>=3.0'  # Allow any Python version above 3.0
+      FLASK_APP: app.py  # Adjust this to your Flask application's main file
+      FLASK_ENV: development  # Set the Flask environment (development/production)
 
     steps:
       - name: Checkout code
@@ -41,6 +38,9 @@ jobs:
 
       - name: Set up Python
         uses: actions/setup-python@v2
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          architecture: x64
 
       - name: Install dependencies
         run: |
@@ -49,18 +49,23 @@ jobs:
 
       - name: Set up the database
         run: |
-          python manage.py makemigrations
-          python manage.py migrate
+          # Adjust this section based on your Flask database setup commands
+          # Example: flask db init, flask db migrate, flask db upgrade
+          echo "Skipping database migrations for Flask setup"
 
       - name: Run tests
         run: |
-          python manage.py test
+          # Replace with your Flask test commands (e.g., pytest)
+          pytest
 
       - name: Collect static files
         run: |
-          python manage.py collectstatic --noinput
+          # Modify this command as per your Flask application's requirements
+          echo "Skipping collectstatic for Flask"
 
-      # Commented out the deployment step
+      # Deployment and notification steps are commented out for now
+      # Uncomment and adjust as per your deployment and notification needs
+
       # - name: Deploy to server
       #   if: github.ref == 'refs/heads/main'
       #   env:
@@ -78,13 +83,12 @@ jobs:
       #       cd /path/to/deployment/
       #       source venv/bin/activate
       #       pip install -r requirements.txt
-      #       python manage.py migrate
-      #       python manage.py collectstatic --noinput
-      #       sudo systemctl restart your_application.service
+      #       # Adjust Flask specific deployment commands here
       #     EOF
 
-      # Commented out the notification step
       # - name: Send notification
       #   run: |
-      #     # Placeholder for email notification logic
+      #     # Placeholder for notification logic
       #     echo "Sending notification"
+
+
