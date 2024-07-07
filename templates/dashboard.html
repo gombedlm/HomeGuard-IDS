@@ -1,12 +1,33 @@
+<!-- dashboard.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HomeGuard Dashboard</title>
+    <title>HomeGuard IDS Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <h1>HomeGuard Dashboard</h1>
-    <p>Welcome to the HomeGuard dashboard!</p>
+    <div class="container">
+        <h1>Welcome to HomeGuard IDS Dashboard</h1>
+        <div class="dashboard-widgets">
+            <div class="widget">
+                <h2>Recent Alerts</h2>
+                <ul>
+                    <li>Alert 1</li>
+                    <li>Alert 2</li>
+                    <li>Alert 3</li>
+                </ul>
+            </div>
+            <div class="widget">
+                <h2>Network Status</h2>
+                <p>Connected Devices: 5</p>
+                <p>Internet Speed: High</p>
+            </div>
+            <!-- Add more widgets and functionality as needed -->
+        </div>
+        <a href="/about">About HomeGuard IDS</a>
+    </div>
 </body>
 </html>
