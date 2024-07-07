@@ -1,4 +1,4 @@
-name: Django CI/CD
+name: HomeGuard CI/CD
 
 on:
   push:
@@ -42,7 +42,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: 3.10  # Corrected Python version
+        python-version: 3.10  # Correct Python version
 
     - name: Install dependencies
       run: |
@@ -90,4 +90,3 @@ jobs:
     #   run: |
     #     # Placeholder for email notification logic
     #     echo "Sending notification"
-
