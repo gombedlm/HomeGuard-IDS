@@ -1,16 +1,29 @@
-import pytest
-from app import app
+import os
+import sys
+import unittest
 
-@pytest.fixture
-def client():
-    """Create a test client for the app."""
-    with app.test_client() as client:
-        yield client
+# Insert the parent directory into sys.path to import app from main/
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
-def test_home_page(client):
-    """Test the home page endpoint."""
-    response = client.get('/')
-    assert response.status_code == 200
-    assert b'Welcome to HomeGuard' in response.data
+from main.app import app  # Assuming app.py is in main/
 
-# Add more endpoint tests as needed
+class TestAppEndpoints(unittest.TestCase):
+    
+    def setUp(self):
+        app.testing = True
+        self.client = app.test_client()
+
+    def test_home_endpoint(self):
+        response = self.client.get('/')
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'Welcome to HomeGuard IDS Dashboard', response.data)
+
+    def test_login_endpoint(self):
+        response = self.client.post('/login', data=dict(
+            username='testuser',
+            password='testpassword'
+        ))
+        self.assertEqual(response.status_code, 404)  # Adjust this as per your application's actual behavior
+
+if __name__ == '__main__':
+    unittest.main()

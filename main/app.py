@@ -6,7 +6,9 @@ app = Flask(__name__)
 # Route for the dashboard
 @app.route('/')
 def dashboard():
+    print("Welcome to HomeGuard IDS Dashboard")
     return render_template('dashboard.html')
+
 
 # Route for the about page
 @app.route('/about')
