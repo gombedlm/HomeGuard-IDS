@@ -3,36 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HomeGuard IDS Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <script>
-        function activateModule(moduleName) {
-            alert("Activating " + moduleName + " module...");
-            // TODO: Add logic to activate the respective module
-        }
-    </script>
+    <title>HomeGuard Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to HomeGuard IDS Dashboard</h1>
-        <div class="dashboard-widgets">
+        <header>
+            <h1>HomeGuard Dashboard</h1>
+        </header>
+
+        <section class="dashboard-widgets">
             <div class="widget">
-                <h2>Alerting Module</h2>
-                <p>Manage alerts and notifications.</p>
-                <button onclick="activateModule('Alerting')">Activate Alerting Module</button>
+                <h3>System Status</h3>
+                <p>System statistics</p>
+                <a href="#">View System Details</a>
             </div>
+
             <div class="widget">
-                <h2>Monitoring Module</h2>
-                <p>Monitor network activity.</p>
-                <button onclick="activateModule('Monitoring')">Activate Monitoring Module</button>
+                <h3>Recent Alerts</h3>
+                <p>Detect Anomolies</p>
+                <a href="#">View Alerts</a>
             </div>
+
             <div class="widget">
-                <h2>Detection Module</h2>
-                <p>Detect suspicious activities.</p>
-                <button onclick="activateModule('Detection')">Activate Detection Module</button>
+                <h3>Network Monitoring</h3>
+                <p>Monitor Network Traffic</p>
+                <a href="{{ url_for('monitoring') }}">Open Monitoring</a>
             </div>
-        </div>
-        <a href="/about">About HomeGuard IDS</a>
+        </section>
     </div>
 </body>
 </html>

@@ -1,0 +1,81 @@
+/* styles.css */
+
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header styles */
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: #333;
+}
+
+/* Dashboard widgets */
+.dashboard-widgets {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.widget {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    margin: 0 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.widget:hover {
+    transform: translateY(-5px);
+}
+
+.widget h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.widget p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.widget ul {
+    padding-left: 20px;
+    list-style-type: disc;
+    color: #666;
+}
+
+/* Links */
+a {
+    color: #007bff;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+    transition: color 0.3s ease-in-out;
+}
+
+a:hover {
+    color: #0056b3;
+}
+
