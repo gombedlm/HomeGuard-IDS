@@ -36,7 +36,6 @@ h1 {
 }
 
 .widget {
-    background-color: #f9f9f9;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -44,13 +43,26 @@ h1 {
     flex: 1;
     margin: 0 10px;
     transition: transform 0.3s ease-in-out;
+    text-align: center;
+}
+
+.widget.notifications {
+    background-color: #ffcccb;
+}
+
+.widget.settings {
+    background-color: #d1e7dd;
+}
+
+.widget.monitoring {
+    background-color: #cff4fc;
 }
 
 .widget:hover {
     transform: translateY(-5px);
 }
 
-.widget h2 {
+.widget h3 {
     color: #333;
     margin-bottom: 10px;
 }
@@ -66,16 +78,18 @@ h1 {
     color: #666;
 }
 
-/* Links */
-a {
-    color: #007bff;
+/* Button links */
+.widget a {
+    color: #fff;
+    background-color: #007bff;
+    padding: 10px 20px;
+    border-radius: 5px;
     text-decoration: none;
     display: inline-block;
     margin-top: 10px;
-    transition: color 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out;
 }
 
-a:hover {
-    color: #0056b3;
+.widget a:hover {
+    background-color: #0056b3;
 }
-
