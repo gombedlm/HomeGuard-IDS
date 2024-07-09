@@ -3,34 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HomeGuard Dashboard</title>
+    <title>HomeGuard IDS Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>HomeGuard Dashboard</h1>
+        <header class="header">
+            <h1>HomeGuard IDS Dashboard</h1>
         </header>
 
         <section class="dashboard-widgets">
             <div class="widget notifications">
                 <h3>System Status</h3>
-                <p>System statistics</p>
-                <a href="#">View System Details</a>
+                <div class="widget-content">
+                    <p>View system status and performance metrics.</p>
+                    <a href="#" class="button-blue">View Details</a>
+                </div>
             </div>
 
-            <div class="widget settings">
-                <h3>Recent Alerts</h3>
-                <p>Detect Anomalies</p>
-                <a href="#">View Alerts</a>
+            <div class="widget system-logs">
+                <h3>System Logs</h3>
+                <div class="widget-content">
+                    <p>Review system logs and event history.</p>
+                    <a href="#" class="button-red">View Logs</a>
+                </div>
             </div>
 
             <div class="widget monitoring">
                 <h3>Network Monitoring</h3>
-                <p>Monitor Network Traffic</p>
-                <a href="{{ url_for('monitoring') }}">Open Monitoring</a>
+                <div class="widget-content">
+                    <p>Monitor real-time network traffic and connectivity.</p>
+                    <a href="{{ url_for('monitoring') }}" class="button-orange">Open Monitoring</a>
+                </div>
             </div>
         </section>
     </div>
 </body>
 </html>
+
+
+
+
