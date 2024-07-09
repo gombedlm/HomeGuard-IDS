@@ -28,10 +28,10 @@
                 <ul class="widget-content" id="anomalies-list">
                     {% if anomalies %}
                         {% for anomaly in anomalies %}
-                            <li>{{ anomaly }}</li>
+                            {{ anomaly }}
                         {% endfor %}
                     {% else %}
-                        <li>No anomalies detected.</li>
+                        <p>No anomalies detected.</p>
                     {% endif %}
                 </ul>
             </div>
@@ -43,7 +43,7 @@
                     <p><strong>Memory Usage:</strong> <span id="memory-usage">Loading...</span>%</p>
                     <h4>Network Interfaces:</h4>
                     <ul id="network-interfaces">
-                        <li>Loading...</li>
+                        <p>Loading...</p>
                     </ul>
                 </div>
             </div>
