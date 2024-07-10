@@ -4,28 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Error</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #343a40;
-            padding: 40px;
-            text-align: center;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        h1 {
-            color: #dc3545;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
+    <header>
+        <a href="/" class="button-back">Back</a>
+    </header>
     <div class="container">
         <h1>Oops! Something went wrong.</h1>
         <p>{{ error_message }}</p>
         <p>Please try again later or contact support.</p>
+
+        <div class="error-details">
+            <h2>Error Details:</h2>
+            <pre>{{ error_details }}</pre>
+        </div>
     </div>
 </body>
 </html>
