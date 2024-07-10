@@ -1,97 +1,43 @@
-<!-- monitoring.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Network Monitoring - HomeGuard</title>
+    <title>HomeGuard IDS - Monitoring</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
     <div class="container">
         <header class="header">
-            <h1>Network Monitoring</h1>
-            <a href="/" class="button-blue">Back to Dashboard</a>
+            <h1>HomeGuard IDS - Monitoring</h1>
+            <a href="/" class="button-back">Back</a>
         </header>
 
-        <div class="content">
-            <div class="widget monitoring">
-                <h3>Live Updates</h3>
-                <div id="live-updates-container" class="widget-content">
-                    <p>Loading...</p>
-                </div>
-            </div>
-
-            <div class="widget notifications">
-                <h3>Anomalies Detected</h3>
-                <ul class="widget-content" id="anomalies-list">
-                    {% if anomalies %}
-                        {% for anomaly in anomalies %}
-                            {{ anomaly }}
-                        {% endfor %}
-                    {% else %}
-                        <p>No anomalies detected.</p>
-                    {% endif %}
-                </ul>
-            </div>
-
-            <div class="widget system-info">
-                <h3>System Information</h3>
+        <section class="dashboard-widgets monitoring">
+            <div class="widget network-traffic">
+                <h3>Network Traffic</h3>
                 <div class="widget-content">
-                    <p><strong>CPU Usage:</strong> <span id="cpu-usage">Loading...</span>%</p>
-                    <p><strong>Memory Usage:</strong> <span id="memory-usage">Loading...</span>%</p>
-                    <h4>Network Interfaces:</h4>
-                    <ul id="network-interfaces">
-                        <p>Loading...</p>
-                    </ul>
+                    <p>Real-time network traffic monitoring.</p>
+                    <a href="#" class="button button-blue">View Details</a>
                 </div>
             </div>
-        </div>
+
+            <div class="widget anomalies">
+                <h3>Anomalies Detected</h3>
+                <div class="widget-content">
+                    <p>Monitor and respond to detected anomalies.</p>
+                    <a href="#" class="button button-red">View Anomalies</a>
+                </div>
+            </div>
+
+            <div class="widget risk-levels">
+                <h3>Risk Levels</h3>
+                <div class="widget-content">
+                    <p>Current risk levels and threat assessments.</p>
+                    <a href="#" class="button button-orange">View Risk Levels</a>
+                </div>
+            </div>
+        </section>
     </div>
-
-    <!-- Script for live updates -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        function updateLiveUpdates(data) {
-            const container = document.getElementById('live-updates-container');
-            container.innerHTML = '';
-
-            data.forEach(item => {
-                const paragraph = document.createElement('p');
-                paragraph.textContent = item;
-                container.appendChild(paragraph);
-            });
-        }
-
-        function updateSystemInfo(data) {
-            document.getElementById('cpu-usage').textContent = data.cpu_percent.toFixed(2);
-            document.getElementById('memory-usage').textContent = data.memory_percent.toFixed(2);
-
-            const networkInterfacesList = document.getElementById('network-interfaces');
-            networkInterfacesList.innerHTML = '';
-            for (const iface in data.interfaces_status) {
-                const listItem = document.createElement('li');
-                listItem.textContent = `${iface}: IP - ${data.interfaces_status[iface].ip_address}, Status - ${data.interfaces_status[iface].status}`;
-                networkInterfacesList.appendChild(listItem);
-            }
-        }
-
-        // Fetch live updates and system info every 5 seconds (adjust as needed)
-        $(document).ready(function() {
-            function fetchUpdates() {
-                fetch('/live_updates_data')
-                    .then(response => response.json())
-                    .then(data => {
-                        updateLiveUpdates(data.live_updates);
-                        updateSystemInfo(data.system_info);
-                    })
-                    .catch(error => console.error('Error fetching live updates:', error))
-                    .finally(() => setTimeout(fetchUpdates, 5000)); // Recursive call after delay
-            }
-
-            fetchUpdates(); // Initial call to start fetching updates
-        });
-    </script>
 </body>
 </html>
