@@ -1,22 +1,21 @@
-/* Reset and General styles */
+/* General styles */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f0f0f0;
+    background-color: #f0f4f8;
     margin: 0;
     padding: 0;
 }
 
 .container {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 20px auto;
     padding: 20px;
-    background-color: #fff;
+    background-color: #ffffff;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Header styles */
 .header {
     text-align: center;
     margin-bottom: 20px;
@@ -24,88 +23,134 @@ body {
 
 .header h1 {
     color: #333;
-    font-size: 24px;
+    font-size: 32px;
 }
 
-/* Widget styles */
+/* Widget styles for both dashboards */
 .widget {
+    flex: 1 1 100%; /* Full width for widgets */
+    max-width: 100%; /* Full width for widgets */
+    text-align: center;
     padding: 20px;
-    margin-bottom: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-    width: 100%; /* Adjust as needed */
-    max-width: 300px; /* Adjust as needed */
-    margin: 0 auto; /* Center the widget */
+    background-color: #ffffff;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.widget:hover {
+    transform: translateY(-5px);
 }
 
 .widget h3 {
-    margin-bottom: 10px;
     font-size: 18px;
+    margin-bottom: 10px;
     color: #333;
-    text-align: center;
 }
 
 .widget-content {
-    text-align: center;
+    line-height: 1.6;
 }
 
-.widget p {
-    margin-bottom: 10px;
-    color: #666;
-    line-height: 1.5;
-}
-
-/* Notification widget */
-.widget.notifications {
-    background-color: #f1f8ff;
-}
-
-.widget.notifications a.button-blue {
-    background-color: #007bff;
-    color: #fff;
-    padding: 6px 12px;
+.widget a.button {
+    display: inline-block;
+    padding: 12px 24px;
     border-radius: 5px;
     text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
     transition: background-color 0.3s ease-in-out;
 }
 
-.widget.notifications a.button-blue:hover {
+.widget a.button:hover {
+    opacity: 0.9;
+}
+
+/* Button specific styles */
+.button-blue {
+    background-color: #007bff;
+    border: 1px solid #007bff;
+}
+
+.button-blue:hover {
     background-color: #0056b3;
 }
 
-/* System Logs widget */
-.widget.system-logs {
-    background-color: #fff0f1;
-}
-
-.widget.system-logs a.button-red {
+.button-red {
     background-color: #dc3545;
-    color: #fff;
-    padding: 6px 12px;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s ease-in-out;
+    border: 1px solid #dc3545;
 }
 
-.widget.system-logs a.button-red:hover {
+.button-red:hover {
     background-color: #c82333;
 }
 
-/* Monitoring widget */
-.widget.monitoring {
-    background-color: #fffaf0;
-}
-
-.widget.monitoring a.button-orange {
+.button-orange {
     background-color: #fd7e14;
-    color: #fff;
-    padding: 6px 12px;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s ease-in-out;
+    border: 1px solid #fd7e14;
 }
 
-.widget.monitoring a.button-orange:hover {
+.button-orange:hover {
     background-color: #e66300;
+}
+
+/* Grid layout for home dashboard */
+.home-dashboard .dashboard-widgets {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 20px;
+}
+
+/* Align widgets on the right side */
+.home-dashboard .dashboard-widgets {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Align widgets to the right */
+}
+
+/* Align monitoring widgets on the right side stacked */
+.monitoring .dashboard-widgets {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+/* Sidebar styles */
+.sidebar {
+    width: 250px;
+    flex-shrink: 0;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar .widget {
+    text-align: left;
+}
+
+.sidebar .widget h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.sidebar .widget ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar .widget ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar .widget ul li a {
+    text-decoration: none;
+    color: #007bff;
+    transition: color 0.3s ease-in-out;
+}
+
+.sidebar .widget ul li a:hover {
+    color: #0056b3;
 }
