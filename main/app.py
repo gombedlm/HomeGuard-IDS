@@ -1,38 +1,26 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, jsonify
+from src.monitoring.monitoring import NetworkMonitor
 
 app = Flask(__name__)
-app.secret_key = 'supersecretkey'  # Replace with a secure secret key
-
-# Simple list for demonstration; replace with secure authentication method
-users = {
-    'admin': 'password'
-}
+monitor = NetworkMonitor()
 
 @app.route('/')
 def index():
-    if 'username' in session:
-        return render_template('dashboard.html')
-    return redirect(url_for('login'))
+    return render_template('index.html')
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        if username in users and users[username] == password:
-            session['username'] = username
-            return redirect(url_for('index'))
-        return render_template('login.html', error='Invalid username or password')
-    return render_template('login.html')
+@app.route('/dashboard')
+def dashboard():
+    return render_template('index.html')
 
-@app.route('/logout')
-def logout():
-    session.pop('username', None)
-    return redirect(url_for('index'))
+@app.route('/api/live-updates')
+def live_updates():
+    updates = monitor.get_live_updates()
+    return jsonify(updates)
 
-@app.route('/monitoring')
+@app.route('/api/monitoring')
 def monitoring():
-    return render_template('monitoring.html')
+    data = monitor.get_monitoring_data()
+    return jsonify(data)
 
 if __name__ == '__main__':
     app.run(debug=True)
